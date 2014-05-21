@@ -25,3 +25,5 @@ gulp.task('styles', function () {
   .pipe(concat('application.css'))
   .pipe(gulp.dest('./tmp/stylesheets'));
 });
+
+gulp.task('build', ['scripts', 'styles']);

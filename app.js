@@ -9,6 +9,9 @@ var path = require('path');
 var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var gulp = require('gulp');
+
+require('./gulpfile');
 
 // require('./config/db'); // TODO [DB] : Connect to database
 // require('./config/passport'); // TODO [FB] : Passport configuration
@@ -36,6 +39,7 @@ app.use(flash());
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'tmp')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -112,5 +116,7 @@ app.get('/result', function(req, res){
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  gulp.start('build', function(){
+    console.log('Express server (with gulp) listening on port ' + app.get('port'));
+  });
 });
