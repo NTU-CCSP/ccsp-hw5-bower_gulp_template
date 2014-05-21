@@ -11,7 +11,9 @@ gulp.task('lint', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src('./public/javascripts/*.js')
+  return gulp.src([
+    './public/javascripts/jquery.easypiechart.js',
+    './public/javascripts/*.js'])
   .pipe(jshint())
   .pipe(jshint.reporter('default'))
   .pipe(concat('application.js'))
@@ -20,7 +22,10 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('styles', function () {
-  return gulp.src('./public/stylesheets/*.css')
+  return gulp.src([
+    './public/stylesheets/normalize.css',
+    './public/stylesheets/*.css'
+  ])
   .pipe(csso())
   .pipe(concat('application.css'))
   .pipe(gulp.dest('./tmp/stylesheets'));
