@@ -3,7 +3,7 @@
 /* Draggable options */
 
 var optionElems = $('.poll-list label'),
-    isDragging = false
+    isDragging = false;
 
 optionElems.mousedown(function(){
   isDragging = true;
